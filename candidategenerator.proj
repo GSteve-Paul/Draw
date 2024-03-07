@@ -1,0 +1,21 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <Configuration>Release</Configuration>
+        <OutputType>winexe</OutputType>
+        <AssemblyName>CandidateGenerator</AssemblyName>
+        <Optimize>true</Optimize>
+        <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+        <OutputPath>bin\Release\</OutputPath>
+        <Prefer32Bit>false</Prefer32Bit>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <Compile Include="./src/candidate_generator/*.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="System" />
+    </ItemGroup>
+
+    <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

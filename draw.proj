@@ -1,0 +1,32 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <Configuration>Release</Configuration>
+        <OutputType>winexe</OutputType>
+        <AssemblyName>Draw</AssemblyName>
+        <Optimize>true</Optimize>
+        <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+        <OutputPath>bin\Release\</OutputPath>
+        <Prefer32Bit>false</Prefer32Bit>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <Compile Include="./src/draw/*.cs" />
+        <Page Include="./src/draw/*.xaml" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="System" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Xaml" />
+        <Reference Include="System.Xml" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Xml.Linq" />
+        <Reference Include="System.Data.DataSetExtensions" />
+        <Reference Include="WindowsBase" />
+        <Reference Include="PresentationCore" />
+        <Reference Include="PresentationFramework" />
+    </ItemGroup>
+
+    <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+    <Import Project="$(MSBuildBinPath)\Microsoft.WinFX.targets" />
+</Project>
