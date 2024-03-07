@@ -104,6 +104,22 @@ namespace Draw
             streamReader.Close();
         }
 
+        private void OutputPeopleReceivePrize(Tuple<int, int> range, int prizeLevel)
+        {
+            string path = "./Output.txt";
+            StreamWriter streamWriter = new StreamWriter(path, true);
+            int l = range.Item1;
+            int r = range.Item2;
+            streamWriter.WriteLine("level: " + prizeLevel);
+            for (int i = l; i <= r; i++)
+            {
+                int nb = _drawAlgo.Candidates[i];
+                string name = _candidateNames[nb];
+                streamWriter.WriteLine(name);
+            }
+            streamWriter.Close();
+        }
+
         private void Init()
         {
             ReadCandidateNames();
@@ -136,8 +152,10 @@ namespace Draw
             Tuple<int, int> range = _drawAlgo.SelectSome(selectedPeople);
 
             Task printer = Task.Run(() => { PrintSelectedPeople(range); });
+            Task outputer = Task.Run(() => { OutputPeopleReceivePrize(range, prizeLevel + 1); });
             DrawButton.IsEnabled = false;
             await printer;
+            await outputer;
 
             if (nbButtonClick != nbPrize)
                 DrawButton.IsEnabled = true;
@@ -250,7 +268,7 @@ namespace Draw
             }
             for (int i = 0; i < m; i++)
             {
-                int random_idx = _random.Next(_begin, _size - _begin);
+                int random_idx = _random.Next(_begin, _size);
 
                 int tmp = _candidates[random_idx];
                 _candidates[random_idx] = _candidates[_begin];
