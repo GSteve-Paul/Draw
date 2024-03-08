@@ -36,6 +36,7 @@ namespace Draw
         private string _prizeNamePath = "./prize_name.txt";
         private string _prizeContentPath = "./prize_content.txt";
         private string _prizeAmountPath = "./prize_amount.txt";
+        private string _outputPath = "./Output.txt";
 
         private int nbCandidates;
         private int nbPrize;
@@ -106,8 +107,7 @@ namespace Draw
 
         private void OutputPeopleReceivePrize(Tuple<int, int> range, int prizeLevel)
         {
-            string path = "./Output.txt";
-            StreamWriter streamWriter = new StreamWriter(path, true);
+            StreamWriter streamWriter = new StreamWriter(_outputPath, true);
             int l = range.Item1;
             int r = range.Item2;
             streamWriter.WriteLine("level: " + prizeLevel);
@@ -122,6 +122,7 @@ namespace Draw
 
         private void Init()
         {
+            File.Delete(_outputPath);
             ReadCandidateNames();
             ReadPrizeData();
             int totalPrize = 0;
